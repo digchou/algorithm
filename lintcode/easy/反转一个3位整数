@@ -1,6 +1,4 @@
-37. 反转一个3位整数 
-
-class Solution:
+ class Solution:
     """
     @param number: A 3-digit number.
     @return: Reversed number.
