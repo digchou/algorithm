@@ -29,3 +29,41 @@ class Solution:
                     A[i],A[i+1]=A[i+1],A[i]
             LEN=LEN-1
         return A[k-1]
+
+
+insertion sort
+class Solution:
+    # @param k & A a integer and an array
+    # @return ans a integer
+    def kthLargestElement(self, k, A):
+        for i in range(1,len(A)):
+            if A[i]>A[i-1]:
+                tmp=A[i]
+                index=i
+                while index>0 and A[index-1]<tmp:
+                    A[index]=A[index-1]
+                    index-=1
+                A[index]=tmp
+        return A[k-1]
+        
+insertion sort(折半)
+class Solution:
+    # @param k & A a integer and an array
+    # @return ans a integer
+    def kthLargestElement(self, k, A):
+        for i in range(1,len(A)):
+            current=A[i]
+            index=i
+            low=0
+            high=index-1
+            while low<=high:
+                mid=(low+high)//2
+                if A[mid]>current:
+                    low=mid+1
+                else:
+                    high=mid-1
+            while index>low:
+                A[index]=A[index-1]
+                index=index-1
+            A[index]=current
+        return A[k-1]
