@@ -67,3 +67,38 @@ class Solution:
                 index=index-1
             A[index]=current
         return A[k-1]
+        
+        
+合并排序  终于AC了
+class Solution:
+    # @param k & A a integer and an array
+    # @return ans a integer
+    def kthLargestElement(self, k, A):
+        S=self.merge_sort(A)
+        return S[k-1]
+        
+    def merge_sort(self,A):
+        if len(A)>1:
+            mid=len(A)//2
+            left=A[:mid]
+            right=A[mid:]
+            self.merge_sort(left)
+            self.merge_sort(right)
+            i=0;j=0;p=0
+            while i<len(left) and j<len(right):
+                if left[i]<right[j]:
+                    A[p]=right[j]
+                    j=j+1
+                else:
+                    A[p]=left[i]
+                    i=i+1
+                p=p+1
+            while i<len(left):
+                A[p]=left[i]
+                i=i+1
+                p=p+1
+            while j<len(right):
+                A[p]=right[j]
+                j=j+1
+                p=p+1
+        return A
