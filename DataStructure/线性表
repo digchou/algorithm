@@ -1,0 +1,31 @@
+从有序顺序表中删除所有重复的元素，使表中所有的值均不同
+思路：先设第一个元素是非重复的，之后若有重复，则删除，若出现不重复的元素，将其排到第一个元素后面
+
+typedef struct{
+	int *data;
+	int length;
+}seqlist;
+
+bool Dele(seqlist &L){
+	if(L.length==0)
+		return false;
+	int i,j;
+	for(i=0,j=1;j<L.length;j++)
+		if(L.data[i]!=L.data[j])
+			L.data[++i]=L.data[j];
+	L.length=i+1;
+}
+int main()
+{
+	seqlist L;
+	int c;
+	L.data=(int *)malloc(sizeof(int)*11);
+	L.length=11;
+	int se[]={1,2,2,2,2,3,3,3,4,4,5};
+	for(int i=0;i<11;i++)
+		L.data[i]=se[i];
+	Dele(L);
+	for(int j=0;j<L.length;j++)
+		printf("%d",L.data[j]);
+	return 1;
+}
